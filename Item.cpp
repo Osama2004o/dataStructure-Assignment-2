@@ -1,6 +1,6 @@
 #include "Item.h"
 
-Item::Item(string name, string category, int price, int compareWay = 1)
+Item::Item(string name = "", string category = "", int price = 0, int compareWay = 1)
 {
     this->name = name;
     this->category = category;
