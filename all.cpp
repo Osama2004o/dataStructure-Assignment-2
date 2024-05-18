@@ -1092,63 +1092,65 @@ int main()
         getItemsBST(file, s, sortBy);
         s.inOrderCall();
     }
-    return 1;
-    cout << "To sort:" << endl;
-    cout << "1 - by name (press key 1)" << endl;
-    cout << "2 - by price (press key 2)" << endl;
-    cin >> sortBy;
-
-    cout << "choice a heap:" << endl;
-    cout << "1 - Max heap  (press 1)" << endl;
-    cout << "2 - Min heap  (press key 2) " << endl;
-    cout << "3 - Heap sort 'using max heap' - 'ascending' (press key 3)" << endl;
-    cout << "4 - Heap sort  'using min heap' - 'descending'  (press key 4)" << endl;
-    cin >> algoChoice;
-
-    if (algoChoice == 1 || algoChoice == 2)
+    else if (chooseDataStructure == 3)
     {
+        cout << "To sort:" << endl;
+        cout << "1 - by name (press key 1)" << endl;
+        cout << "2 - by price (press key 2)" << endl;
+        cin >> sortBy;
 
-        if (algoChoice == 1)
+        cout << "choice a heap:" << endl;
+        cout << "1 - Max heap  (press 1)" << endl;
+        cout << "2 - Min heap  (press key 2) " << endl;
+        cout << "3 - Heap sort 'using max heap' - 'ascending' (press key 3)" << endl;
+        cout << "4 - Heap sort  'using min heap' - 'descending'  (press key 4)" << endl;
+        cin >> algoChoice;
+
+        if (algoChoice == 1 || algoChoice == 2)
         {
-            algo = new MaxHeap();
-            getItems(file, algo, sortBy); // Call the function to read items
-            // algo->deleteItem(20); // you delete item by price
-            // algo->deleteItem("cheese cake"); // you delete item by name
-            algo->print();
+
+            if (algoChoice == 1)
+            {
+                algo = new MaxHeap();
+                getItems(file, algo, sortBy); // Call the function to read items
+                // algo->deleteItem(20); // you delete item by price
+                // algo->deleteItem("cheese cake"); // you delete item by name
+                algo->print();
+            }
+
+            else
+            {
+                algo = new MinHeap();
+                getItems(file, algo, sortBy); // Call the function to read items
+                // algo->deleteItem(20); // you delete item by price
+                // algo->deleteItem("cheese cake"); // you delete item by name
+                algo->print();
+            }
         }
 
-        else
+        else if (algoChoice == 3 || algoChoice == 4)
         {
-            algo = new MinHeap();
-            getItems(file, algo, sortBy); // Call the function to read items
-            // algo->deleteItem(20); // you delete item by price
-            // algo->deleteItem("cheese cake"); // you delete item by name
-            algo->print();
-        }
-    }
 
-    else if (algoChoice == 3 || algoChoice == 4)
-    {
+            if (algoChoice == 3)
+            {
+                HeapsortMaxHeap *algo = new HeapsortMaxHeap();
+                getItems(file, algo, sortBy); // Call the function to read items
+                algo->deleteItem(20);
+                algo->insertItem(Item("ko", "cafe", 321));
+                algo->print();
+            }
 
-        if (algoChoice == 3)
-        {
-            HeapsortMaxHeap *algo = new HeapsortMaxHeap();
-            getItems(file, algo, sortBy); // Call the function to read items
-            algo->deleteItem(20);
-            algo->insertItem(Item("ko", "cafe", 321));
-            algo->print();
-        }
+            else
+            {
+                HeapsortMinHeap *algo = new HeapsortMinHeap();
+                getItems(file, algo, sortBy);    // Call the function to read items
+                getItems(file, algo, sortBy);    // Call the function to read items
+                algo->deleteItem("cheese cake"); // you delete item by name
+                algo->insertItem(Item("ko", "cafe", 321));
 
-        else
-        {
-            HeapsortMinHeap *algo = new HeapsortMinHeap();
-            getItems(file, algo, sortBy);    // Call the function to read items
-            getItems(file, algo, sortBy);    // Call the function to read items
-            algo->deleteItem("cheese cake"); // you delete item by name
-            algo->insertItem(Item("ko", "cafe", 321));
-
-            algo->peak();
-            algo->print();
+                algo->peak();
+                algo->print();
+            }
         }
     }
 }
